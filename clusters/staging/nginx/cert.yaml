@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: nginx-test-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-staginga
     kind: ClusterIssuer
   commonName: nginx-test.devops.notmet.net
   dnsNames:
