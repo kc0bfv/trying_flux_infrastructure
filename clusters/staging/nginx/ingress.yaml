@@ -5,6 +5,7 @@ metadata:
   namespace: nginx-test
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   rules:
   - host: "nginx-test.devops.notmet.net"
@@ -17,3 +18,6 @@ spec:
             name: nginx-service
             port:
               number: 80
+  tls:
+    - hosts:
+      - nginx-test.devops.notmet.net
