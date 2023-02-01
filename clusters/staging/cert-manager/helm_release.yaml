@@ -14,6 +14,3 @@ spec:
         name: jetstack
       version: v1.11.0
   interval: 1m0s
-  values:
-    installCRDs: true
-
