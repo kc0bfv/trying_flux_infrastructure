@@ -4,11 +4,16 @@ metadata:
   name: nginx-ingress
   namespace: nginx-test
   annotations:
+    kubernetes.io/ingress.class: traefik
     nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
+  tls:
+    - hosts:
+      - nginx-test.devops.notmet.net
+      secretName: nginx-test-tls
   rules:
-  - host: "nginx-test.devops.notmet.net"
+  - host: nginx-test.devops.notmet.net
     http:
       paths:
       - path: /
@@ -18,7 +23,3 @@ spec:
             name: nginx-service
             port:
               number: 80
-  tls:
-    - hosts:
-      - nginx-test.devops.notmet.net
-      secretName: nginx-test-tls
