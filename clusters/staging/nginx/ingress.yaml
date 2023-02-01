@@ -21,3 +21,4 @@ spec:
   tls:
     - hosts:
       - nginx-test.devops.notmet.net
+      secretName: nginx-test-tls
