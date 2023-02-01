@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginxa
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
