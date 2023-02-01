@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-test.devops.notmet.net
+  namespace: default
+spec:
+  secretName: nginx-test-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: nginx-test.devops.notmet.net
+  dnsNames:
+  - nginx-test.devops.notmet.net
