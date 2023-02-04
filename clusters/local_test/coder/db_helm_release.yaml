@@ -13,9 +13,9 @@ spec:
         kind: HelmRepository
         name: bitnami
       version: v11
-      values:
-        auth.username: coder
-        auth.database: coder
-        auth.existingSecret: coder-db-creds
-        persistence.size: "10Gi"
+  values:
+    auth.username: coder
+    auth.database: coder
+    auth.existingSecret: coder-db-creds
+    persistence.size: "10Gi"
   interval: 1m0s
