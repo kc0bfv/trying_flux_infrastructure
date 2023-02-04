@@ -1,0 +1,21 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: coder-db
+  namespace: coder
+spec:
+  chart:
+    spec:
+      chart: postgresql
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+      version: v11
+      values:
+        auth.username: coder
+        auth.database: coder
+        auth.existingSecret: coder-db-creds
+        persistence.size: "10Gi"
+  interval: 1m0s
