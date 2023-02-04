@@ -13,4 +13,4 @@ spec:
         kind: HelmRepository
         name: jetstack
       version: v1.11.0
-  interval: 1m0s
+  interval: 60m0s
