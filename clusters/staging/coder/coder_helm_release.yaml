@@ -22,7 +22,7 @@ spec:
               key: url
       ingress:
         enable: true
-        host: "coder"
+        host: "coder.devops.notmet.net"
 
       serviceAccount:
         workspacePerms: true
