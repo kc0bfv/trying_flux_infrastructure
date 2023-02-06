@@ -14,12 +14,13 @@ spec:
         name: bitnami
       version: v11
   values:
-    auth:
-      username: coder
-      password: coder
-      database: coder
-      #existingSecret: coder-db-creds
-    primary:
-      persistence:
-        size: "10Gi"
+    global:
+      postgresql:
+        auth:
+          username: coder
+          database: coder
+          existingSecret: coder-db-creds
+        primary:
+          persistence:
+            size: "10Gi"
   interval: 1m0s
