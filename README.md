@@ -21,5 +21,5 @@ So - create the secrets in advance.
 sudo kubectl create namespace coder
 
 sudo kubectl create secret generic coder-db-creds -n coder --from-literal="password=${DBPASSWD}" --from-literal="postgres-password=${DBPASSWD}" --from-literal="replication-password=${DBPASSWD}"
-sudo kubectl create secret generic coder-db-url -n coder --from-literal=url="postgres://codea:${DBPASSWD}@coder-db-postgresql.coder.svc.cluster.local:5432/coder?sslmode=disable"
+sudo kubectl create secret generic coder-db-url -n coder --from-literal=url="postgres://coder:${DBPASSWD}@coder-db-postgresql.coder.svc.cluster.local:5432/coder?sslmode=disable"
 ```

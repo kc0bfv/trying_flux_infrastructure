@@ -20,9 +20,9 @@ spec:
             secretKeyRef:
               name: coder-db-url
               key: url
-      ingress:
-        enable: true
-        host: "coder.devops.notmet.net"
+      #ingress:
+        #enable: true
+        #host: "coder.devops.notmet.net"
 
       serviceAccount:
         workspacePerms: true
