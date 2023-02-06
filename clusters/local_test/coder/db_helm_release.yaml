@@ -16,7 +16,8 @@ spec:
   values:
     auth:
       username: coder
+      password: coder
       database: coder
-      existingSecret: coder-db-creds
+      #existingSecret: coder-db-creds
     persistence.size: "10Gi"
   interval: 1m0s
