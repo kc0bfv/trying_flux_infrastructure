@@ -32,12 +32,12 @@ spec:
           valueFrome:
             secretKeyRef:
                 name: webhook-catcher-keys
-                key: write_key
+                key: writekey
         - name: READ_KEY
           valueFrome:
             secretKeyRef:
                 name: webhook-catcher-keys
-                key: read_key
+                key: readkey
       volumes:
       - name: webhook-catcher-data
         persistentVolumeClaim:
