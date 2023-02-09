@@ -21,6 +21,7 @@ spec:
           name: webhook-catcher-data
         ports:
         - containerPort: 8080
+        command: ["printenv"]
         env:
         - name: PORT
           value: "8080"
