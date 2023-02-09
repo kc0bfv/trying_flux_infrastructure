@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
-netadata:
+metadata:
     name: webhook-catcher-data
     namespace: power-sensor-monitor
 spec:
