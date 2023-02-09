@@ -5,7 +5,7 @@ metadata:
     namespace: power-sensor-monitor
 spec:
     accessModes:
-        - ReadWriteOncePod
+        - ReadWriteOnce
     volumeMode: Filesystem
     resources:
         requests:
