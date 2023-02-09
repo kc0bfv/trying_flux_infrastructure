@@ -23,3 +23,12 @@ sudo kubectl create namespace coder
 sudo kubectl create secret generic coder-db-creds -n coder --from-literal="password=${DBPASSWD}" --from-literal="postgres-password=${DBPASSWD}" --from-literal="replication-password=${DBPASSWD}"
 sudo kubectl create secret generic coder-db-url -n coder --from-literal=url="postgres://coder:${DBPASSWD}@coder-db-postgresql.coder.svc.cluster.local:5432/coder?sslmode=disable"
 ```
+
+# Power Sensor Monitor Secrets
+
+Power sensor monitor needs a read key and write key
+
+```
+sudo kubectl create namespace power-sensor-monitor
+sudo kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="write_key=WRITE_KEY_HERE" --from-literal="read_key=READ_KEY_HERE"
+```
