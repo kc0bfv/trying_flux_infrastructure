@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: webhook-catcher
-        image: kc0bfv/power-sensor-monitor
+        image: kc0bfv/power_sensor_monitor
         volumeMounts:
         - mountPath: "/opt/webhook_data"
           name: webhook-catcher-data
