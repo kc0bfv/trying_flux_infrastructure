@@ -1,25 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: coder-ingress
-  namespace: coder
+  name: nginx-ingress
+  namespace: nginx-test
   annotations:
     kubernetes.io/ingress.class: traefik
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
     - hosts:
-      - coder.devops.notmet.net
-      secretName: coder.devops.notmet.net-tls
+      - nginx-test.devops.notmet.net
+      secretName: nginx-test-tls
   rules:
-  - host: coder.devops.notmet.net
+  - host: nginx-test.devops.notmet.net
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: coder
+            name: nginx-service
             port:
               number: 80

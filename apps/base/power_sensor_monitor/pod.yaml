@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webhook-catcher
+  namespace: power-sensor-monitor
+  labels:
+    app: webhook-catcher
+spec:
+  containers:
+  - name: webhook-catcher
+    image: kc0bfv/power_sensor_monitor
+    volumeMounts:
+    - mountPath: "/opt/webhook_data"
+      name: webhook-catcher-data
+    ports:
+    - containerPort: 8080
+    env:
+    - name: PORT
+      value: "8080"
+    - name: URL_BASE
+      value: "webhook"
+    - name: WRITE_DIR
+      value: "/opt/webhook_data/"
+    - name: WRITE_KEY
+      valueFrome:
+        secretKeyRef:
+            name: webhook-catcher-keys
+            key: writekeydne
+    - name: READ_KEY
+      valueFrome:
+        secretKeyRef:
+            name: webhook-catcher-keys
+            key: readkey
+  volumes:
+  - name: webhook-catcher-data
+    persistentVolumeClaim:
+        claimName: webhook-catcher-data

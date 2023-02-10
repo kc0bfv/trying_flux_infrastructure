@@ -30,5 +30,13 @@ Power sensor monitor needs a read key and write key
 
 ```
 sudo kubectl create namespace power-sensor-monitor
-sudo kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="write_key=WRITE_KEY_HERE" --from-literal="read_key=READ_KEY_HERE"
+sudo kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="writekey=WRITE_KEY_HERE" --from-literal="readkey=READ_KEY_HERE"
 ```
+
+# Improved Secrets Setup...
+
+Based on https://fluxcd.io/flux/guides/sealed-secrets/
+
+Install kubeseal from [GitHub](https://github.com/bitnami-labs/sealed-secrets/releases)
+
+

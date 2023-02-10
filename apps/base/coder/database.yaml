@@ -1,4 +1,13 @@
 ---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: bitnami
+  namespace: coder
+spec:
+  interval: 24h
+  url: https://charts.bitnami.com/bitnami
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -13,6 +22,8 @@ spec:
         kind: HelmRepository
         name: bitnami
       version: v11
+      interval: 24h
+  interval: 10m
   values:
     global:
       postgresql:
@@ -23,4 +34,3 @@ spec:
         primary:
           persistence:
             size: "10Gi"
-  interval: 60m0s
