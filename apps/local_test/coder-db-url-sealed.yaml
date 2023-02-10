@@ -1,0 +1,15 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: coder-db-url
+  namespace: coder
+spec:
+  encryptedData:
+    url: AgCgZFgiuiRc2H8aue8CCUSU7mcldtgWGqjG4K9A6hu31JXkYXcZ+l9LyEL8WwNxawGgPnciUVNLYMtoTZsDttHrmLL8753ievXDfjj6oVmY0O7fQ0v0otlrFN5/+mYMcNZh597o/qj/KhrITSOtDE/ZS6LYd018ZZezS1M6YbFMX7lioKAyGKRcBkWF/jFI4OurEXkaSokMl5aYPxqhVLtXmFgK3dLj3NY3NlxKiIfA24NhSzy9D+bK+/w/GAhP4QNy/PBWsOqtIVjz71A58FM35Ac6uidDwX9lXqeDgWgnXYVD8W0Q5ltykqRLpfXIvUZOg2d+IY80QNTg7ZQR6lvuqasiJn/mu5RlxKrQb+2LwpOHjBogr+0mo+11WzfSfOsVkj1iBlOFo4sw0Khy1pL7ma7ecPDCmI3jrH+w4r6WY5UZCzGyYondTfFyhlMNnQU2zBUdlNtcycxKByliTp7Vgt99qyoNINwnJ8rdtsCZGhE+WJ6RPp6uKhEc4Kdz/xX+w4zJGthbRECKDTzhSvpNUwhKm5r7OSAERA1HZ0787ximYKCSC8XBSfKTuM6QbByW3qVCbdZdStg0Yg/ZhNoBXJY/TSdZi0b83qWOjwBtqDR8BItZTzDwsFQT2gDtPhufBIEjC/0k//6blQNDTY8Q+AtAUcc/Cr2/fsp4ex8M6Sks8ypd+DMw+XYqpVzyDOggUJnMSLwguDWVAwpHCWVRlwPe96j1FDAs3OFi3gkrgFY2a+FzlJvNqYfM8OTKBXhY6To35vxH7hJInKDVWq4SSW4s5We6s0sDgOqz+TwbGsCvzOi5eIYu8d1KRNWguTiQDhgAyVuXCxuvfw==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: coder-db-url
+      namespace: coder
+

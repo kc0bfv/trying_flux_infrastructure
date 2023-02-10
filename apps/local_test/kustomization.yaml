@@ -6,4 +6,7 @@ resources:
   - ../base/power_sensor_monitor
 patchesStrategicMerge:
   - coder-ingress.yaml
+  - coder-db-creds-sealed.yaml
+  - coder-db-url-sealed.yaml
   - nginx-ingress.yaml
+  - webhook-catcher-keys-sealed.yaml
