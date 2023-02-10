@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: power-sensor-monitor
 resources:
   - namespace.yaml
+  - persistent_volume_claim.yaml
   - pod.yaml
   - printenv-pod.yaml
   - service.yaml
