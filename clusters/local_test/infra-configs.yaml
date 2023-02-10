@@ -7,9 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: infra-controllers
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
+  interval: 1m
   sourceRef:
     kind: GitRepository
     name: flux-system
