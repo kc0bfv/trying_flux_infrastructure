@@ -3,8 +3,6 @@ kind: Pod
 metadata:
   name: webhook-catcher
   namespace: power-sensor-monitor
-  annotations:
-    kustomize.toolkit.fluxcd.io/force: enabled
   labels:
     app: webhook-catcher
 spec:

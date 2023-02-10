@@ -21,7 +21,6 @@ spec:
           name: webhook-catcher-data
         ports:
         - containerPort: 8080
-        command: ["printenv"]
         env:
         - name: PORT
           value: "8080"
@@ -30,12 +29,12 @@ spec:
         - name: WRITE_DIR
           value: "/opt/webhook_data/"
         - name: WRITE_KEY
-          valueFrome:
+          valueFrom:
             secretKeyRef:
                 name: webhook-catcher-keys
-                key: writekeydne
+                key: writekey
         - name: READ_KEY
-          valueFrome:
+          valueFrom:
             secretKeyRef:
                 name: webhook-catcher-keys
                 key: readkey
