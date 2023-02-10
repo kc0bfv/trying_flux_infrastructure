@@ -32,5 +32,8 @@ spec:
               name: coder-db-url
               key: url
 
+      service:
+        type: ClusterIP
+
       serviceAccount:
         workspacePerms: true
