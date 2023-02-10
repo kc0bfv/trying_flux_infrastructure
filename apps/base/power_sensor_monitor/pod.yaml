@@ -22,12 +22,12 @@ spec:
     - name: WRITE_DIR
       value: "/opt/webhook_data/"
     - name: WRITE_KEY
-      valueFrome:
+      valueFrom:
         secretKeyRef:
             name: webhook-catcher-keys
             key: writekeydne
     - name: READ_KEY
-      valueFrome:
+      valueFrom:
         secretKeyRef:
             name: webhook-catcher-keys
             key: readkey
