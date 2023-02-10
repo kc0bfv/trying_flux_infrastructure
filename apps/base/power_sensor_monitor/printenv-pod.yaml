@@ -24,7 +24,7 @@ spec:
       valueFrom:
         secretKeyRef:
             name: webhook-catcher-keys
-            key: writekeydne
+            key: writekey
     - name: READ_KEY
       valueFrom:
         secretKeyRef:
