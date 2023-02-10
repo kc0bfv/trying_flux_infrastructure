@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../base/coder
   - ../base/nginx
+  - ../base/power_sensor_monitor
 patchesStrategicMerge:
   - coder-ingress.yaml
   - nginx-ingress.yaml
