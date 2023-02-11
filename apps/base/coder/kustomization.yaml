@@ -3,8 +3,6 @@ kind: Kustomization
 namespace: coder
 resources:
   - namespace.yaml
-  - coder-db-creds-sealed.yaml
-  - coder-db-url-sealed.yaml
   - database.yaml
   - coder.yaml
   - ingress.yaml
