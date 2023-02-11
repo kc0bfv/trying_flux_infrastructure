@@ -6,6 +6,5 @@ resources:
   - webhook-catcher-keys-sealed.yaml
   - persistent_volume_claim.yaml
   - pod.yaml
-  - deployment.yaml
   - service.yaml
   - ingress.yaml
