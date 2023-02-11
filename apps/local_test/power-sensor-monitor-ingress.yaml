@@ -1,31 +1,29 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: coder-ingress
-  namespace: coder
+  name: power-sensor-monitor-ingress
+  namespace: power-sensor-monitor
   annotations:
-    kubernetes.io/ingress.class: traefik
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: coder
+  - host: "power-sensor-monitor"
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: coder
+            name: power-sensor-monitor-service
             port:
               number: 80
-  - host: coder-dev
+  - host: "power-sensor-monitor-dev"
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: coder
+            name: power-sensor-monitor-service
             port:
               number: 80

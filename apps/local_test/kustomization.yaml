@@ -7,3 +7,4 @@ resources:
 patchesStrategicMerge:
   - coder-ingress.yaml
   - nginx-ingress.yaml
+  - power-sensor-monitor-ingress.yaml
