@@ -50,18 +50,29 @@ For power sensor monitor:
 kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="writekey=${WRITEKEY}" --from-literal="readkey=${READKEY}" -o yaml --dry-run=client > webhook-catcher-keys.yaml
 ```
 
+For ttrss:
+
+```
+ export DB_USER=postgres
+ export DB_NAME=postgres
+ export DB_PASS=MakeSomethingNiceUpHere
+
+kubectl create secret generic ttrss-database -n ttrss --from-literal="username=${DB_USER}" --from-literal="dbname=${DB_NAME}" --from-literal="password=${DB_PASS}" -o yaml --dry-run=client > ttrss-database.yaml
+```
+
 Encrypt the secrets:
 
 ```
 kubeseal --format=yaml --cert=public_sealed_secret.pem < coder-db-creds.yaml > coder-db-creds-sealed.yaml
 kubeseal --format=yaml --cert=public_sealed_secret.pem < coder-db-url.yaml > coder-db-url-sealed.yaml
 kubeseal --format=yaml --cert=public_sealed_secret.pem < webhook-catcher-keys.yaml > webhook-catcher-keys-sealed.yaml
+kubeseal --format=yaml --cert=public_sealed_secret.pem < ttrss-database.yaml > ttrss-database-sealed.yaml
 ```
 
 Delete the unencrypted secrets, and the public key if you want:
 
 ```
-rm coder-db-creds.yaml coder-db-url.yaml webhook-catcher-keys.yaml public_sealed_secret.pem
+rm coder-db-creds.yaml coder-db-url.yaml webhook-catcher-keys.yaml ttrss-database.yaml public_sealed_secret.pem
 ```
 
 Move the sealed secrets back to your git repo development box, and drop them in the `secrets/TARGET_CLUSTER` folder.  Commit that and they'll flow to the target cluster.
