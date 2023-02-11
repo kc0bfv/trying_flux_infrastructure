@@ -10,7 +10,7 @@ spec:
     image: postgres:12-alpine
     volumeMounts:
     - mountPath: "/var/lib/postgresql/data"
-      name: db
+      name: database
     env:
     - name: POSTGRES_USER
       valueFrom:
@@ -28,6 +28,6 @@ spec:
             name: ttrss-database
             key: password
   volumes:
-  - name: db
+  - name: database
     persistentVolumeClaim:
-        claimName: db
+        claimName: database
