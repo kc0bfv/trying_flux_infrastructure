@@ -24,7 +24,11 @@ Based on https://fluxcd.io/flux/guides/sealed-secrets/
 
 Install kubeseal from [GitHub](https://github.com/bitnami-labs/sealed-secrets/releases)
 
-After bootstrapping on deployed machine, run `sudo kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=flux-system > public_sealed_secret.pem`.
+After bootstrapping on deployed machine, run:
+
+```
+sudo kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=flux-system > public_sealed_secret.pem
+```
 
 Create your secrets with `-o yaml --dry-run=client` tacked onto the kubectl command, and save the output into files.
 
@@ -60,4 +64,4 @@ Delete the unencrypted secrets, and the public key if you want:
 rm coder-db-creds.yaml coder-db-url.yaml webhook-catcher-keys.yaml public_sealed_secret.pem
 ```
 
-Move the sealed secrets back to your git repo development box, and drop them in the `apps/TARGET_CLUSTER` folder.  Commit that and they'll flow to the target cluster.
+Move the sealed secrets back to your git repo development box, and drop them in the `secrets/TARGET_CLUSTER` folder.  Commit that and they'll flow to the target cluster.
