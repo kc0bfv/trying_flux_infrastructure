@@ -4,8 +4,9 @@ kind: Pod
 metadata:
   name: app
   namespace: ttrss
+  labels:
+    app: app
 spec:
-  hostname: app
   containers:
   - name: app
     image: cthulhoo/ttrss-fpm-pgsql-static
