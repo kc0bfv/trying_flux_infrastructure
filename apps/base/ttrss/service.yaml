@@ -8,7 +8,8 @@ spec:
   selector:
     app: ttrss-web-nginx
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
       targetPort: 80
 ---
@@ -23,12 +24,12 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      name: name1
       targetPort: 80
+      name: http
     - protocol: TCP
       port: 9000
-      name: name2
       targetPort: 9000
+      name: app
 ---
 apiVersion: v1
 kind: Service
@@ -38,3 +39,8 @@ metadata:
 spec:
   selector:
     name: db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+      name: postgres
