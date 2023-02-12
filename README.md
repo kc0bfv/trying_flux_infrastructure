@@ -30,15 +30,15 @@ After bootstrapping on deployed machine, run:
 sudo kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=flux-system > public_sealed_secret.pem
 ```
 
-Create your secrets with `-o yaml --dry-run=client` tacked onto the kubectl command, and save the output into files.
+Create your secrets with `-o yaml --dry-run=client` tacked onto the kubectl command, pipe it to kubeseal to encrypt, and save the output into files.
 
 For coder:
 
 ```
  export DBPASSWD=MakeSomethingNiceUpHere
 
-kubectl create secret generic coder-db-creds -n coder --from-literal="password=${DBPASSWD}" --from-literal="postgres-password=${DBPASSWD}" --from-literal="replication-password=${DBPASSWD}" -o yaml --dry-run=client > coder-db-creds.yaml
-kubectl create secret generic coder-db-url -n coder --from-literal=url="postgres://coder:${DBPASSWD}@coder-db-postgresql.coder.svc.cluster.local:5432/coder?sslmode=disable" -o yaml --dry-run=client > coder-db-url.yaml
+kubectl create secret generic coder-db-creds -n coder --from-literal="password=${DBPASSWD}" --from-literal="postgres-password=${DBPASSWD}" --from-literal="replication-password=${DBPASSWD}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > coder-db-creds-sealed.yaml
+kubectl create secret generic coder-db-url -n coder --from-literal=url="postgres://coder:${DBPASSWD}@coder-db-postgresql.coder.svc.cluster.local:5432/coder?sslmode=disable" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > coder-db-url-sealed.yaml
 ```
 
 For power sensor monitor:
@@ -47,7 +47,7 @@ For power sensor monitor:
  export WRITEKEY=MakeSomethingNiceUpHere
  export READKEY=MakeSomethingNiceUpHere
 
-kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="writekey=${WRITEKEY}" --from-literal="readkey=${READKEY}" -o yaml --dry-run=client > webhook-catcher-keys.yaml
+kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="writekey=${WRITEKEY}" --from-literal="readkey=${READKEY}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > webhook-catcher-keys-sealed.yaml
 ```
 
 For ttrss:
@@ -56,23 +56,11 @@ For ttrss:
  export DB_USER=postgres
  export DB_NAME=postgres
  export DB_PASS=MakeSomethingNiceUpHere
+ export BASIC_AUTH_USER=user
+ export BASIC_AUTH_PASS=MakeSomethingNiceUpHere
 
-kubectl create secret generic ttrss-database -n ttrss --from-literal="username=${DB_USER}" --from-literal="dbname=${DB_NAME}" --from-literal="password=${DB_PASS}" -o yaml --dry-run=client > ttrss-database.yaml
-```
-
-Encrypt the secrets:
-
-```
-kubeseal --format=yaml --cert=public_sealed_secret.pem < coder-db-creds.yaml > coder-db-creds-sealed.yaml
-kubeseal --format=yaml --cert=public_sealed_secret.pem < coder-db-url.yaml > coder-db-url-sealed.yaml
-kubeseal --format=yaml --cert=public_sealed_secret.pem < webhook-catcher-keys.yaml > webhook-catcher-keys-sealed.yaml
-kubeseal --format=yaml --cert=public_sealed_secret.pem < ttrss-database.yaml > ttrss-database-sealed.yaml
-```
-
-Delete the unencrypted secrets, and the public key if you want:
-
-```
-rm coder-db-creds.yaml coder-db-url.yaml webhook-catcher-keys.yaml ttrss-database.yaml public_sealed_secret.pem
+kubectl create secret generic ttrss-database -n ttrss --from-literal="username=${DB_USER}" --from-literal="dbname=${DB_NAME}" --from-literal="password=${DB_PASS}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-database-sealed.yaml
+kubectl create secret generic ttrss-basic-auth -n ttrss --from-literal=username=`echo $BASIC_AUTH_USER | base64` --from-literal=password=`echo $BASIC_AUTH_PASS | base64` --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-basic-auth-sealed.yaml
 ```
 
 Move the sealed secrets back to your git repo development box, and drop them in the `secrets/TARGET_CLUSTER` folder.  Commit that and they'll flow to the target cluster.

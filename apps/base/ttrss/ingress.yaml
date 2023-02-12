@@ -5,6 +5,7 @@ metadata:
   namespace: ttrss
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/router.middlewares: ttrss-ttrss-auth@kubernetescrd
 spec:
   rules:
   - host: "ttrss"
