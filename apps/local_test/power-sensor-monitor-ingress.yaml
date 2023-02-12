@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: power-sensor-monitor-ingress
   namespace: power-sensor-monitor
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: "power-sensor-monitor"

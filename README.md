@@ -60,7 +60,7 @@ For ttrss:
  export BASIC_AUTH_PASS=MakeSomethingNiceUpHere
 
 kubectl create secret generic ttrss-database -n ttrss --from-literal="username=${DB_USER}" --from-literal="dbname=${DB_NAME}" --from-literal="password=${DB_PASS}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-database-sealed.yaml
-kubectl create secret generic ttrss-basic-auth -n ttrss --from-literal=username=`echo $BASIC_AUTH_USER | base64` --from-literal=password=`echo $BASIC_AUTH_PASS | base64` --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-basic-auth-sealed.yaml
+kubectl create secret generic ttrss-basic-auth -n ttrss --from-literal=username="${BASIC_AUTH_USER}" --from-literal=password="${BASIC_AUTH_PASS}" --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-basic-auth-sealed.yaml
 ```
 
 Move the sealed secrets back to your git repo development box, and drop them in the `secrets/TARGET_CLUSTER` folder.  Commit that and they'll flow to the target cluster.
