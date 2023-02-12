@@ -8,4 +8,5 @@ resources:
 - ttrss-fpm-pgsql-static-pod.yaml
 - ttrss-web-nginx-pod.yaml
 - service.yaml
+- ingress-middleware.yaml
 - ingress.yaml
