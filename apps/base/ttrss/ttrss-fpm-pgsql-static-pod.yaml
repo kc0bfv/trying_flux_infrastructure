@@ -18,7 +18,7 @@ spec:
       readOnly: true
     env:
     - name: TTRSS_SELF_URL_PATH
-      value: "https://reader/tt-rss/"
+      value: "http://ttrss/tt-rss/"
     - name: HTTP_PORT
       value: "127.0.0.1:8280"
     - name: TTRSS_DB_USER
@@ -62,7 +62,7 @@ spec:
       name: backups
     env:
     - name: TTRSS_SELF_URL_PATH
-      value: "https://reader/tt-rss/"
+      value: "http://ttrss/tt-rss/"
     - name: HTTP_PORT
       value: "127.0.0.1:8280"
     - name: TTRSS_DB_USER
@@ -106,7 +106,7 @@ spec:
       readOnly: true
     env:
     - name: TTRSS_SELF_URL_PATH
-      value: "https://reader/tt-rss/"
+      value: "http://ttrss/tt-rss/"
     - name: HTTP_PORT
       value: "127.0.0.1:8280"
     - name: TTRSS_DB_USER
