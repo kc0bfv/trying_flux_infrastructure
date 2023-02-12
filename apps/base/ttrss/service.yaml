@@ -8,9 +8,9 @@ spec:
   selector:
     app: ttrss-web-nginx
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -23,9 +23,11 @@ spec:
   ports:
     - protocol: TCP
       port: 80
+      name: name1
       targetPort: 80
     - protocol: TCP
       port: 9000
+      name: name2
       targetPort: 9000
 ---
 apiVersion: v1
