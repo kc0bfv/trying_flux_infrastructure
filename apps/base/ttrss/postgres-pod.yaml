@@ -4,6 +4,8 @@ kind: Pod
 metadata:
   name: db
   namespace: ttrss
+  labels:
+    app: db
 spec:
   containers:
   - name: db
