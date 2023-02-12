@@ -5,6 +5,7 @@ metadata:
   name: app
   namespace: ttrss
 spec:
+  hostname: app
   containers:
   - name: app
     image: cthulhoo/ttrss-fpm-pgsql-static
