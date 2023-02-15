@@ -1,0 +1,23 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: kc0bfv-helm-repo
+spec:
+  interval: 24h
+  url: https://kc0bfv.github.io/helm-repo/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: power-sensor-monitor
+spec:
+  chart:
+    spec:
+      chart: power-sensor-monitor
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: kc0bfv-helm-repo
+      interval: 24h
+  interval: 10m
