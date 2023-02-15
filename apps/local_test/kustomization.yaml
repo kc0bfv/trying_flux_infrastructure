@@ -6,7 +6,7 @@ resources:
   - ../base/power_sensor_monitor
   - ../base/ttrss
 patchesStrategicMerge:
-  - coder-ingress.yaml
+  - coder.yaml
   - nginx-ingress.yaml
-  #- power-sensor-monitor-ingress.yaml
+  - power-sensor-monitor.yaml
   - ttrss-ingress.yaml

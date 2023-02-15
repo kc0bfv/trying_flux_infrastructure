@@ -4,5 +4,5 @@ resources:
   - ../base/coder
   - ../base/nginx
 patchesStrategicMerge:
-  - coder-ingress.yaml
+  - coder.yaml
   - nginx-ingress.yaml

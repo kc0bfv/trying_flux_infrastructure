@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: power-sensor-monitor
+spec:
+  chart:
+    spec:
+      chart: power-sensor-monitor
+      version: '~0.1.0-0'
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: kc0bfv-helm-repo
+      interval: 24h
+  interval: 10m
+  values:
+    hosts:
+      - host: power-sensor-monitor
+        paths:
+          - path: /
+            pathType: Prefix
+      - host: power-sensor-monitor-dev
+        paths:
+          - path: /
+            pathType: Prefix

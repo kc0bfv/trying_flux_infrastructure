@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: coder
+  namespace: coder
+spec:
+  chart:
+    spec:
+      chart: coder
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: coder-v2
+      interval: 24h
+  interval: 10m
+  values:
+    coder:
+      env:
+        - name: CODER_PG_CONNECTION_URL
+          valueFrom:
+            secretKeyRef:
+              name: coder-db-url
+              key: url
+
+      service:
+        type: ClusterIP
+
+      serviceAccount:
+        workspacePerms: true
+    ingress:
+      enable: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: letsencrypt
+      host: coder
+      tls:
+        enable: true
