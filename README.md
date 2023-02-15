@@ -47,7 +47,7 @@ For power sensor monitor:
  export WRITEKEY=MakeSomethingNiceUpHere
  export READKEY=MakeSomethingNiceUpHere
 
-kubectl create secret generic webhook-catcher-keys -n power-sensor-monitor --from-literal="writekey=${WRITEKEY}" --from-literal="readkey=${READKEY}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > webhook-catcher-keys-sealed.yaml
+kubectl create secret generic power-sensor-monitor -n power-sensor-monitor --from-literal="writekey=${WRITEKEY}" --from-literal="readkey=${READKEY}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > power-sensor-monitor-sealed.yaml
 ```
 
 For ttrss:
