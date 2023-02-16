@@ -14,12 +14,13 @@ spec:
       interval: 24h
   interval: 10m
   values:
-    hosts:
-      - host: power-sensor-monitora
-        paths:
-          - path: /
-            pathType: Prefix
-      - host: power-sensor-monitor-dev
-        paths:
-          - path: /
-            pathType: Prefix
+    ingress:
+      hosts:
+        - host: power-sensor-monitora
+          paths:
+            - path: /
+              pathType: Prefix
+        - host: power-sensor-monitor-dev
+          paths:
+            - path: /
+              pathType: Prefix
