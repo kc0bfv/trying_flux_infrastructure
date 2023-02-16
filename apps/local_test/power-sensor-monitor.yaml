@@ -15,7 +15,7 @@ spec:
   interval: 10m
   values:
     hosts:
-      - host: power-sensor-monitor
+      - host: power-sensor-monitora
         paths:
           - path: /
             pathType: Prefix
