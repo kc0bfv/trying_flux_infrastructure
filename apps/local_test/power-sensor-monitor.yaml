@@ -16,7 +16,7 @@ spec:
   values:
     ingress:
       hosts:
-        - host: power-sensor-monitora
+        - host: power-sensor-monitor
           paths:
             - path: /
               pathType: Prefix
