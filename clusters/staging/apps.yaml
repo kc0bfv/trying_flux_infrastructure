@@ -6,11 +6,10 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-    - name: staging
+    - name: secrets
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./apps/staging
   prune: true
   wait: true
-  timeout: 5m0s

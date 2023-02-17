@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: power-sensor-monitor
+spec:
+  values:
+    ingress:
+      hosts:
+        - host: lakehouse.devops.notmet.net
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: power-sensor-monitor-tls
+          hosts:
+            - lakehouse.devops.notmet.net
