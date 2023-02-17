@@ -53,13 +53,12 @@ kubectl create secret generic power-sensor-monitor -n power-sensor-monitor --fro
 For ttrss:
 
 ```
- export DB_USER=postgres
- export DB_NAME=postgres
+ export ADMIN_PASS=MakeSomethingNiceUpHere
  export DB_PASS=MakeSomethingNiceUpHere
- export BASIC_AUTH_USER=user
+ export BASIC_AUTH_USER=MakeSomethingNiceUpHere
  export BASIC_AUTH_PASS=MakeSomethingNiceUpHere
 
-kubectl create secret generic ttrss-database -n ttrss --from-literal="username=${DB_USER}" --from-literal="dbname=${DB_NAME}" --from-literal="password=${DB_PASS}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-database-sealed.yaml
+kubectl create secret generic ttrss-database -n ttrss --from-literal="admin-pass=${ADMIN_PASS}" --from-literal="password=${DB_PASS}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-database-sealed.yaml
 kubectl create secret generic ttrss-basic-auth -n ttrss --from-literal=username="${BASIC_AUTH_USER}" --from-literal=password="${BASIC_AUTH_PASS}" --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-basic-auth-sealed.yaml
 ```
 
