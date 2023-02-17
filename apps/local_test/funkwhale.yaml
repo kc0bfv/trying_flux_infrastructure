@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: funkwhale
+spec:
+  values:
+    ingress:
+      enabled: true
+      host: funkwhale
