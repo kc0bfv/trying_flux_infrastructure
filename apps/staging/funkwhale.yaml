@@ -11,3 +11,6 @@ spec:
         - secretName: funkwhale-tls
           hosts:
             - funkwhale.devops.notmet.net
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: letsencrypt
