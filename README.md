@@ -3,16 +3,17 @@
 ```
 sudo mkdir /root/.k3d-cache
 
+export IP_ADDRESS=PutRemoteIPAddressHere
+
 sudo k3d cluster create --k3s-arg "--tls-san=${IP_ADDRESS}@server:0" --port 80:80@loadbalancer --port 443:443@loadbalancer --api-port 6443 --volume /root/.k3d-cache:/var/lib/rancher/k3s/
 ```
 
 # Bootstrapping with this repo
 
-` export GITHUB_TOKEN=PLACE_TOKEN_HERE`
-
-Note the space at the beginning of that one...  If you setup your shell right, that space will prevent the token from going into your history.
+Note the space at the beginning of some of these...  If you setup your shell right, that space will prevent the token from going into your history.
 
 ```
+ export GITHUB_TOKEN=PLACE_TOKEN_HERE
 export CLUSTER="local_test"
 
 sudo --preserve-env=GITHUB_TOKEN flux bootstrap github --owner=kc0bfv --repository=trying_flux_infrastructure --path=clusters/${CLUSTER} --personal
