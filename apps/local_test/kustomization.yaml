@@ -10,3 +10,4 @@ patchesStrategicMerge:
   - coder.yaml
   - nginx-ingress.yaml
   - power-sensor-monitor.yaml
+  - funkwhale.yaml
