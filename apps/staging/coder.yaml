@@ -10,12 +10,12 @@ spec:
       env:
         - name: "CODER_ACCESS_URL"
           value: https://coder.devops.notmet.net/
-    ingress:
-      enable: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: letsencrypt
-      host: coder.devops.notmet.net
-      tls:
+      ingress:
         enable: true
-        secretName: coder-tls
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: letsencrypt
+        host: coder.devops.notmet.net
+        tls:
+          enable: true
+          secretName: coder-tls
