@@ -3,10 +3,4 @@ kind: Kustomization
 namespace: ttrss
 resources:
 - namespace.yaml
-- persistent_volume_claim.yaml
-- postgres-pod.yaml
-- ttrss-fpm-pgsql-static-pod.yaml
-- ttrss-web-nginx-pod.yaml
-- service.yaml
-- ingress-middleware.yaml
-- ingress.yaml
+- ttrss.yaml
