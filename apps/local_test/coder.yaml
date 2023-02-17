@@ -6,8 +6,15 @@ metadata:
   namespace: coder
 spec:
   values:
-    ingress:
-      enable: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-      host: coder
+    coder:
+      env:
+        - name: "CODER_ACCESS_URL"
+          value: http://coder/
+      ingress:
+        enable: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+        host: coder
+        #tls:
+        #  enable: true
+        #  secretName: coder-secret-tls
