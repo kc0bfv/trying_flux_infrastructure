@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: power-sensor-monitor
+spec:
+  values:
+    ingress:
+      hosts:
+        - host: lakehouse.sickendick.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: power-sensor-monitor-tls
+          hosts:
+            - lakehouse.sickendick.com
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: letsencrypt
