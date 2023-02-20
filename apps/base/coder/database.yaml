@@ -25,12 +25,11 @@ spec:
       interval: 24h
   interval: 10m
   values:
-    global:
-      postgresql:
-        auth:
-          username: coder
-          database: coder
-          existingSecret: coder-db-creds
-        primary:
-          persistence:
-            size: "10Gi"
+    auth:
+      username: coder
+      database: coder
+      existingSecret: coder-db-creds
+    primary:
+      persistence:
+        enabled: true
+        size: "10Gi"
