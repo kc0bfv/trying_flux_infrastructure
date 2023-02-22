@@ -6,10 +6,8 @@ resources:
   - ../base/power_sensor_monitor
   - ../base/ttrss
   - ../base/funkwhale
-  - coder_http_redir.yaml
 patchesStrategicMerge:
   - coder.yaml
-  - coder_http_redir_patch.yaml
   - nginx-ingress.yaml
   - power-sensor-monitor.yaml
   - funkwhale.yaml
