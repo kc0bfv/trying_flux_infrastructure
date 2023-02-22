@@ -5,4 +5,4 @@ metadata:
 spec:
   values:
     nodeSelector:
-      node-role.kubernetes.io/master: true
+      node-role.kubernetes.io/master: ""
