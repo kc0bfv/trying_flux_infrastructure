@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-redirect
+  namespace: coder
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: coder-redirect@kubernetescrd
+spec:
+  rules:
+    - host: coder.devops.notmet.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: coder
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
