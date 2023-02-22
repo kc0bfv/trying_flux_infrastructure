@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-redirect
+  namespace: coder
+spec:
+  rules:
+    - host: coder
+      http:
+        paths:
+          - backend:
+              service:
+                name: coder
+                port:
+                  number: http
+            path: /
+            pathType: ImplementationSpecific
+
