@@ -31,10 +31,11 @@ ln -s /etc/rancher/k3s/k3s.yaml .kube/config
 You will want to add some firewall rules...
 
 ```
--A INPUT -i enp1s0 -p tcp -m tcp --dport 22 -j ACCEPT
--A INPUT -i enp1s0 -p tcp -m tcp --dport 80 -j ACCEPT
--A INPUT -i enp1s0 -p tcp -m tcp --dport 443 -j ACCEPT
--A INPUT -i enp1s0 -p tcp -m conntrack --ctstate NEW -j DROP
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+-A INPUT -i wg0 -p tcp -m tcp --dport 6443 -j ACCEPT
+-A INPUT -p tcp -m conntrack --ctstate NEW -j DROP
 ```
 
 # Adding another External Node to the Cluster
