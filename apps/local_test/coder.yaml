@@ -6,13 +6,6 @@ metadata:
   namespace: coder
 spec:
   values:
-    postgresql:
-      primary:
-        nodeSelector:
-          node-role.kubernetes.io/master: "true"
-        tolerations:
-          - effect: NoSchedule
-            key: node-role.kubernetes.io/master
     coder:
       env:
         - name: "CODER_ACCESS_URL"
