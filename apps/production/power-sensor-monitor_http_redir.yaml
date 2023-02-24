@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-redirect
+  namespace: power-sensor-monitor
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: power-sensor-monitor-redirect@kubernetescrd
+spec:
+  rules:
+    - host: data.lakehouse.sickendick.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: power-sensor-monitor
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

@@ -9,6 +9,7 @@ patchesStrategicMerge:
   - coder.yaml
   - coder_http_redir.yaml
   - power-sensor-monitor.yaml
+  - power-sensor-monitor_http_redir.yaml
   - ttrss.yaml
   - ttrss_http_redir.yaml
   - funkwhale.yaml

@@ -6,14 +6,15 @@ spec:
   values:
     ingress:
       hosts:
-        - host: lakehouse.sickendick.com
+        - host: data.lakehouse.sickendick.com
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: power-sensor-monitor-tls
           hosts:
-            - lakehouse.sickendick.com
+            - data.lakehouse.sickendick.com
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: letsencrypt
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure

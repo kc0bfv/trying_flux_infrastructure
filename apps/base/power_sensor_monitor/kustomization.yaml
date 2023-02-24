@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: power-sensor-monitor
 resources:
   - power-sensor-monitor.yaml
+  - power-sensor-monitor_http_redir.yaml
