@@ -35,3 +35,8 @@ spec:
         type: ClusterIP
       serviceAccount:
         workspacePerms: true
+      nodeSelector:
+        node-role.kubernetes.io/master: "true"
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master

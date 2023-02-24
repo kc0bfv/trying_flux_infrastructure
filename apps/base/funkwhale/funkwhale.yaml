@@ -22,3 +22,43 @@ spec:
         name: ananace
       interval: 24h
   interval: 10m
+  values:
+    postgresql:
+      primary:
+        nodeSelector:
+          node-role.kubernetes.io/master: "true"
+        tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/master
+    redis:
+      master:
+        nodeSelector:
+          node-role.kubernetes.io/master: "true"
+        tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/master
+    api:
+      nodeSelector:
+        node-role.kubernetes.io/master: "true"
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+    front:
+      nodeSelector:
+        node-role.kubernetes.io/master: "true"
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+    celery:
+      beat:
+        nodeSelector:
+          node-role.kubernetes.io/master: "true"
+        tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/master
+      worker:
+        nodeSelector:
+          node-role.kubernetes.io/master: "true"
+        tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/master
