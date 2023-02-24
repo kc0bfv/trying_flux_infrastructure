@@ -22,3 +22,9 @@ spec:
         name: kc0bfv-helm-repo
       interval: 24h
   interval: 10m
+  values:
+    nodeSelector:
+      node-role.kubernetes.io/master: "true"
+    tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master

@@ -24,15 +24,3 @@ spec:
           paths:
             - path: /
               pathType: Prefix
-    nodeSelector:
-      node-role.kubernetes.io/master: "true"
-    tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-    resources:
-      requests:
-        memory: "50Mi"
-        cpu: "10m"
-      limits:
-        memory: "100Mi"
-        cpu: "200m"
