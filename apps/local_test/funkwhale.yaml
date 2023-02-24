@@ -4,6 +4,20 @@ metadata:
   name: funkwhale
 spec:
   values:
+    postgresql:
+      primary:
+        nodeSelector:
+          node-role.kubernetes.io/master: "true"
+        tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/master
+    redis:
+      master:
+        nodeSelector:
+          node-role.kubernetes.io/master: "true"
+        tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/master
     ingress:
       enabled: true
       host: funkwhale
