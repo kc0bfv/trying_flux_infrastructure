@@ -13,3 +13,4 @@ spec:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: letsencrypt
         traefik.ingress.kubernetes.io/router.middlewares: ttrss-ttrss-auth@kubernetescrd
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure

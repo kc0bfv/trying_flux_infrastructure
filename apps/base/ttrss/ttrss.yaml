@@ -28,3 +28,7 @@ spec:
     tolerations:
       - effect: NoSchedule
         key: node-role.kubernetes.io/master
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
