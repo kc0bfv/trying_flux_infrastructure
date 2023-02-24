@@ -19,7 +19,7 @@ You will want to block the 6443 port using the firewall.  K3s uses docker though
 ```sh
 export EXT_IP_ADDRESS=Put external IP address here
 export WG_IP_ADDRESS=Put wireguard IP address here
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--tls-san=${EXT_IP_ADDRESS} --tls-san=${WG_IP_ADDRESS} --advertise-address=${WG_IP_ADDRESS}" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--tls-san=${EXT_IP_ADDRESS} --tls-san=${WG_IP_ADDRESS} --advertise-address=${WG_IP_ADDRESS} --node-ip=${WG_IP_ADDRESS}" sh -
 ```
 
 As root in root's home dir...
