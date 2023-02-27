@@ -23,7 +23,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: aws-ebs-csi-driver
-        namespace: aws-ebs-csi-driver
+        namespace: kube-system
       interval: 24h
   values:
     extraVolumeTags:
