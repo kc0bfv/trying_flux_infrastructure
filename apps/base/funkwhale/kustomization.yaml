@@ -4,3 +4,4 @@ namespace: funkwhale
 resources:
 - namespace.yaml
 - funkwhale.yaml
+- funkwhale_http_redir.yaml
