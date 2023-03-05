@@ -6,7 +6,7 @@ spec:
   values:
     ingress:
       enabled: true
-      host: funkwhale
+      host: funkwhale.funkwhale
     s3:
       enabled: true
       proxy: false

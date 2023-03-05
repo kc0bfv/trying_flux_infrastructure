@@ -161,8 +161,9 @@ For Funkwhale:
  export AWS_ACCESS_KEY_ID=
  export AWS_SECRET_ACCESS_KEY=
  export AWS_STORAGE_BUCKET_NAME=
+ export AWS_S3_REGION_NAME=
 
-kubectl create secret generic funkwhale-separate-secret -n funkwhale --from-literal="DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}" --from-literal="AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" --from-literal="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" --from-literal="AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > funkwhale-separate-secret-sealed.yaml
+kubectl create secret generic funkwhale-separate-secret -n funkwhale --from-literal="DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}" --from-literal="AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" --from-literal="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" --from-literal="AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}" --from-literal="AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > funkwhale-separate-secret-sealed.yaml
 ```
 
 For AWS creds:
