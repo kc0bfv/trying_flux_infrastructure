@@ -4,7 +4,7 @@ resources:
   - ../base/coder
   - ../base/power_sensor_monitor
   - ../base/ttrss
-  - ../base/funkwhale
+  #- ../base/funkwhale
 patchesStrategicMerge:
   - coder.yaml
   - coder_http_redir.yaml
@@ -12,4 +12,4 @@ patchesStrategicMerge:
   - power-sensor-monitor_http_redir.yaml
   - ttrss.yaml
   - ttrss_http_redir.yaml
-  - funkwhale.yaml
+  #- funkwhale.yaml

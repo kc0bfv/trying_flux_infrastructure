@@ -5,10 +5,10 @@ resources:
   - ../base/nginx
   - ../base/power_sensor_monitor
   - ../base/ttrss
-  - ../base/funkwhale
+  #- ../base/funkwhale
 patchesStrategicMerge:
   - coder.yaml
   - nginx-ingress.yaml
   - power-sensor-monitor.yaml
   - ttrss.yaml
-  - funkwhale.yaml
+  #- funkwhale.yaml
