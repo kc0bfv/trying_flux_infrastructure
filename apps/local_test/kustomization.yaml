@@ -5,7 +5,7 @@ resources:
   - ../base/nginx
   - ../base/power_sensor_monitor
   - ../base/ttrss
-  - ../base/custom_funkwhale
+  - ../base/funkwhale
 patchesStrategicMerge:
   - coder.yaml
   - nginx-ingress.yaml

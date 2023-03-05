@@ -2,10 +2,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: kc0bfv-helm-repo
+  name: ananace
 spec:
   interval: 24h
-  url: https://kc0bfv.github.io/helm-repo/
+  url: https://ananace.gitlab.io/charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -15,15 +15,14 @@ spec:
   chart:
     spec:
       chart: funkwhale
-      version: '~1.0.0-0'
+      version: '~1.0.0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: kc0bfv-helm-repo
+        name: ananace
       interval: 24h
   interval: 10m
   values:
-    separateSecretName: "funkwhale-separate-secret"
     postgresql:
       primary:
         nodeSelector:
