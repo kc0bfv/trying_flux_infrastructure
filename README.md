@@ -155,6 +155,16 @@ kubectl create secret generic ttrss-database -n ttrss --from-literal="admin-pass
 kubectl create secret generic ttrss-basic-auth -n ttrss --from-literal=username="${BASIC_AUTH_USER}" --from-literal=password="${BASIC_AUTH_PASS}" --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > ttrss-basic-auth-sealed.yaml
 ```
 
+For Funkwhale:
+```
+ export DJANGO_SECRET_KEY=
+ export AWS_ACCESS_KEY_ID=
+ export AWS_SECRET_ACCESS_KEY=
+ export AWS_STORAGE_BUCKET_NAME=
+
+kubectl create secret generic funkwhale-separate-secret -n funkwhale --from-literal="DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}" --from-literal="AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" --from-literal="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" --from-literal="AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > funkwhale-separate-secret-sealed.yaml
+```
+
 For AWS creds:
 ```
   export AWS_ACCESS_KEY=...

@@ -14,3 +14,6 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: letsencrypt
+    s3:
+      enabled: true
+      proxy: false
