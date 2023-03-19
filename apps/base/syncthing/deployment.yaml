@@ -18,13 +18,13 @@ spec:
         ports:
         - name: tcpsync
           containerPort: 22000
-          protocol: tcp
+          protocol: TCP
         - name: udpsync
           containerPort: 22000
-          protocol: udp
+          protocol: UDP
         - name: webconf
           containerPort: 8384
-          protocol: tcp
+          protocol: TCP
       nodeSelector:
         node-role.kubernetes.io/control-plane: "true"
       tolerations:
@@ -42,11 +42,11 @@ spec:
   type: LoadBalancer
   ports:
   - name: tcpsync
-    protocol: tcp
+    protocol: TCP
     port: 22000
     targetPort: tcpsync
   - name: udpsync
-    protocol: udp
+    protocol: UDP
     port: 22000
     targetPort: udpsync
 ---
@@ -60,7 +60,7 @@ spec:
     app: syncthing
   ports:
   - name: webconf
-    protocol: tcp
+    protocol: TCP
     port: 8384
     targetPort: webconf
 ---
