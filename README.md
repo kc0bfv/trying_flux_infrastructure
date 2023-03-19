@@ -151,4 +151,13 @@ For AWS creds:
 kubectl create secret generic aws-secret -n kube-system --from-literal="aws_access_key_id=${AWS_ACCESS_KEY}" --from-literal="aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > aws-creds-sealed.yaml
 ```
 
+For syncthing:
+
+```
+ export BASIC_AUTH_USER=MakeSomethingNiceUpHere
+ export BASIC_AUTH_PASS=MakeSomethingNiceUpHere
+
+kubectl create secret generic syncthing-basic-auth -n syncthing --from-literal=username="${BASIC_AUTH_USER}" --from-literal=password="${BASIC_AUTH_PASS}" --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > syncthing-basic-auth-sealed.yaml
+```
+
 Move the sealed secrets back to your git repo development box, and drop them in the `secrets/TARGET_CLUSTER` folder.  Commit that and they'll flow to the target cluster.  Run `sudo flux reconcile source git flux-system` to speed up the flow.

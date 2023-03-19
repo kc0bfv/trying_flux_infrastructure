@@ -64,11 +64,56 @@ spec:
     port: 8384
     targetPort: webconf
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: syncthing-auth
+  namespace: syncthing
+spec:
+  basicAuth:
+    secret: syncthing-basic-auth
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: syncthing-redirect
+  namespace: syncthing
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: syncthing-webconf
   namespace: syncthing
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: syncthing-syncthing-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  rules:
+  - host: "syncthing"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: syncthing-webconf
+            port:
+              number: 8384
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: syncthing-redirect
+  namespace: syncthing
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: syncthing-syncthing-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
   - host: "syncthing"
