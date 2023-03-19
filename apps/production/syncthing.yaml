@@ -10,6 +10,8 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
+  - hosts:
+    - "syncthing.notmet.net"
     secretName: syncthing-tls
   rules:
   - host: "syncthing.notmet.net"
