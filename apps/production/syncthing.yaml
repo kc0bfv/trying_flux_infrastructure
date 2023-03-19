@@ -5,9 +5,12 @@ metadata:
   namespace: syncthing
   annotations:
     kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt
     traefik.ingress.kubernetes.io/router.middlewares: syncthing-syncthing-auth@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
+  tls:
+    secretName: syncthing-tls
   rules:
   - host: "syncthing.notmet.net"
     http:
