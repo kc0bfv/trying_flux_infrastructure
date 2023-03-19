@@ -1,20 +1,4 @@
-# Creating a Cluster
-
-## With K3D
-
-I now think this won't let me add other nodes externally...  So - I'm trying to use k3s directly now.
-
-```
-sudo mkdir /root/.k3d-cache
-
-export IP_ADDRESS=PutRemoteIPAddressHere
-
-sudo k3d cluster create --k3s-arg "--tls-san=${IP_ADDRESS}@server:0" --port 80:80@loadbalancer --port 443:443@loadbalancer --api-port 6443 --volume /root/.k3d-cache:/var/lib/rancher/k3s/
-```
-
-You will want to block the 6443 port using the firewall.  K3s uses docker though, which makes this more difficult.  Inserting a rule at the beginning of the `DOCKER-USER` chain dropping traffic from external ethernet (eth0 maybe) to tcp port 6443 will do it.
-
-## With K3S
+# Creating a Cluster With K3S
 
 ```sh
 export EXT_IP_ADDRESS=Put external IP address here
@@ -83,14 +67,7 @@ sudo systemctl enable wg-quick@wg0
 
 Now the nodes have a method to communicate securely, and IP addresses that can remain stable.
 
-Get the token from the k3s master (run as root):
-
-This is the k3d version, which actually doesn't really work.
-```sh
-docker exec $(docker ps | grep "rancher/k3s" | cut -f 1 -d " ") cat /var/lib/rancher/k3s/server/node-token
-```
-
-In k3s straight setup, just cat /var/lib/rancher/k3s/server/node-token
+Get the token from the k3s master (run as root): `cat /var/lib/rancher/k3s/server/node-token`
 
 On the new host - note the spaces at the beginning of some lines to prevent things going into shell history:
 

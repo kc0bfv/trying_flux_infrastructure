@@ -1,13 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base/coder
-  - ../base/nginx
-  - ../base/power_sensor_monitor
-  - ../base/ttrss
-  - ../base/funkwhale
+- ../base/coder
+- ../base/nginx
+- ../base/power_sensor_monitor
+- ../base/ttrss
+- ../base/funkwhale
+- ../base/syncthing
 patchesStrategicMerge:
-  - coder.yaml
-  - nginx-ingress.yaml
-  - power-sensor-monitor.yaml
-  - funkwhale.yaml
+- coder.yaml
+- nginx-ingress.yaml
+- power-sensor-monitor.yaml
+- funkwhale.yaml

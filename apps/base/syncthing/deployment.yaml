@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syncthing
+  namespace: syncthing
+spec:
+  selector:
+    matchLabels:
+      app: syncthing
+  template:
+    metadata:
+      labels:
+        app: syncthing
+    spec:
+      containers:
+      - name: syncthing
+        image: syncthing/syncthing
+        ports:
+        - name: tcpsync
+          containerPort: 22000
+          protocol: tcp
+        - name: udpsync
+          containerPort: 22000
+          protocol: udp
+        - name: webconf
+          containerPort: 8384
+          protocol: tcp
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: syncthing-sync
+  namespace: syncthing
+spec:
+  selector:
+    app: syncthing
+  type: LoadBalancer
+  ports:
+  - name: tcpsync
+    protocol: tcp
+    port: 22000
+    targetPort: tcpsync
+  - name: udpsync
+    protocol: udp
+    port: 22000
+    targetPort: udpsync
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: syncthing-webconf
+  namespace: syncthing
+spec:
+  selector:
+    app: syncthing
+  ports:
+  - name: webconf
+    protocol: tcp
+    port: 8384
+    targetPort: webconf
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: syncthing-webconf
+  namespace: syncthing
+spec:
+  rules:
+  - host: "syncthing"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: syncthing-webconf
+            port:
+              number: 8384
