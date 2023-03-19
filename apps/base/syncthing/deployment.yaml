@@ -7,14 +7,6 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: node-role.kubernetes.io/control-plane
-          operator: In
-          values:
-          - "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
