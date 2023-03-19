@@ -1,4 +1,5 @@
 kind: PersistentVolumeClaim
+apiVersion: v1 
 metadata:
   name: syncthing-synced
   namespace: syncthing
