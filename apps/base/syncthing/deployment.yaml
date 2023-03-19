@@ -4,6 +4,8 @@ metadata:
   name: syncthing-synced
   namespace: syncthing
 spec:
+  accessModes:
+  - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
