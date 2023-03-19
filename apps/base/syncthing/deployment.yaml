@@ -1,3 +1,20 @@
+kind: PersistentVolumeClaim
+metadata:
+  name: syncthing-synced
+  namespace: syncthing
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: node-role.kubernetes.io/control-plane
+          operator: In
+          values:
+          - "true"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,6 +32,9 @@ spec:
       containers:
       - name: syncthing
         image: syncthing/syncthing
+        volumeMounts:
+        - mountPath: "/var/syncthing"
+          name: synced
         ports:
         - name: tcpsync
           containerPort: 22000
@@ -25,6 +45,10 @@ spec:
         - name: webconf
           containerPort: 8384
           protocol: TCP
+      volumes:
+      - name: synced
+        persistentVolumeClaim:
+          claimName: syncthing-synced
       nodeSelector:
         node-role.kubernetes.io/control-plane: "true"
       tolerations:
