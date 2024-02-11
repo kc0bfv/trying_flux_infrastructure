@@ -32,9 +32,9 @@ spec:
           - effect: NoSchedule
             key: node-role.kubernetes.io/master
       auth:
-        username: funkwhale
-        password: funkwhale
-        database: funkwhale
+        username: postgres
+        password: postgres
+        database: postgres
     redis:
       master:
         nodeSelector:
