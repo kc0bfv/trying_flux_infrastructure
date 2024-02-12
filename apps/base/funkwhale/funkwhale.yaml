@@ -7,6 +7,14 @@ spec:
   interval: 24h
   url: https://kc0bfv.github.io/helm-repo/
 ---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: anance-charts
+spec:
+  interval: 24h
+  url: https://ananace.gitlab.io/charts
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -15,11 +23,11 @@ spec:
   chart:
     spec:
       chart: funkwhale
-      version: '~1.0.0-0'
+      version: '~2.0.5'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: kc0bfv-helm-repo
+        name: anance-charts
       interval: 24h
   interval: 10m
   values:
