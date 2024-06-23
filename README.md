@@ -143,6 +143,16 @@ For Funkwhale:
 kubectl create secret generic funkwhale-separate-secret -n funkwhale --from-literal="DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}" --from-literal="AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" --from-literal="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" --from-literal="AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}" --from-literal="AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > funkwhale-separate-secret-sealed.yaml
 ```
 
+For Funkwhale backup:
+```
+ export AWS_ACCESS_KEY_ID=
+ export AWS_SECRET_ACCESS_KEY=
+ export AWS_STORAGE_BUCKET_NAME=
+ export DATABASE_USER=
+ export DATABASE_PASS=
+kubectl create secret generic backup-funkwhale -n funkwhale --from-literal="aws-access-key-id=${AWS_ACCESS_KEY_ID} --from-literal="aws-secret-access-key=${AWS_SECRET_ACCESS_KEY}" --from-literal="aws-storage-bucket=${AWS_STORAGE_BUCKET_NAME}" --from-literal="database-user=${DATABASE_USER}" --from-literal="database-password=${DATABASE_PASS}" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > backup-funkwhale-sealed.yaml
+```
+
 For AWS creds:
 ```
   export AWS_ACCESS_KEY=...

@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-postgres-s3
+spec:
+  schedule: "47 4 * * 0"
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: backup-postgres-s3
+            image: kc0bfv/backup_postgres_s3_container
+            env:
+            - name: "BACKUP_BASE"
+              value: "funkwhale_db_backup"
+            - name: "AWS_S3_REGION_NAME"
+              value: "us-east-2"
+            - name: "DATABASE_SERVER"
+              value: "funkwhale-postgresql"
+            - name: "DATABASE_NAME"
+              value: "funkwhale"
+            - name: "AWS_ACCESS_KEY_ID"
+              valueFrom:
+                secretKeyRef:
+                  name: backup-funkwhale
+                  key: aws-access-key-id
+            - name: "AWS_SECRET_ACCESS_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: backup-funkwhale
+                  key: aws-secret-access-key
+            - name: "AWS_STORAGE_BUCKET_NAME"
+              valueFrom:
+                secretKeyRef:
+                  name: backup-funkwhale
+                  key: aws-storage-bucket
+            - name: "DATABASE_USER"
+              valueFrom:
+                secretKeyRef:
+                  name: backup-funkwhale
+                  key: database-user
+            - name: "DATABASE_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: backup-funkwhale
+                  key: database-password
