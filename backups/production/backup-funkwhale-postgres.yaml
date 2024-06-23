@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: backup-postgres-s3
+  namespace: funkwhale
 spec:
   schedule: "47 4 * * 0"
   jobTemplate:
