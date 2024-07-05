@@ -23,7 +23,7 @@ spec:
   chart:
     spec:
       chart: funkwhale
-      version: '^1.0.0'
+      version: '^1.0.0-0'
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
