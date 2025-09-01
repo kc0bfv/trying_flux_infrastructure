@@ -7,6 +7,7 @@ resources:
 - ../base/ttrss
 - ../base/funkwhale
 - ../base/syncthing
+- ../base/freshrss
 patchesStrategicMerge:
 - coder.yaml
 - nginx-ingress.yaml

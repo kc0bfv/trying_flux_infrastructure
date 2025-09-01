@@ -1,0 +1,132 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: freshrss-data
+  namespace: freshrss
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512 Mi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: freshrss-extensions
+  namespace: freshrss
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256 Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freshrss
+  namespace: freshrss
+spec:
+  selector:
+    matchLabels:
+      app: freshrss
+  template:
+    metadata:
+      labels:
+        app: freshrss
+    spec:
+      containers:
+      - name: freshrss
+        image: freshrss/freshrss
+        volumeMounts:
+        - mountPath: "/var/www/FreshRSS/data"
+          name: data
+        - mountPath: "/var/www/FreshRSS/extensions"
+          name: extensions
+        ports:
+        - name: inbound
+          containerPort: 80
+          protocol: TCP
+        env:
+        - name: CRON_MIN
+          value: "5, 35"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: freshrss-data
+      - name: extensions
+        persistentVolumeClaim:
+          claimName: freshrss-extensions
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: freshrss
+  namespace: freshrss
+spec:
+  selector:
+    app: freshrss
+  type: LoadBalancer
+  ports:
+  - name: inbound
+    protocol: TCP
+    port: 80
+    targetPort: inbound
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: freshrss-redirect
+  namespace: freshrss
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: freshrss-freshrss-redirect@kubernetescrd
+spec:
+  rules:
+  - host: freshrss
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: freshrss
+            port:
+              number: 443
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadat:
+  name: redirect
+  namespace: freshrss
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: freshrss-redirect
+  namespace: freshrss
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: freshrss-freshrss-redirect@kubernetescrd
+spec:
+  rules:
+  - host: freshrss
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: freshrss
+            port:
+              number: 80
