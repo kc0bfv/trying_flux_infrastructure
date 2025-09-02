@@ -4,7 +4,6 @@ resources:
 - ../base_traefik_upgrade/coder
 - ../base_traefik_upgrade/nginx
 - ../base_traefik_upgrade/power_sensor_monitor
-- ../base_traefik_upgrade/ttrss
 - ../base_traefik_upgrade/funkwhale
 - ../base_traefik_upgrade/syncthing
 - ../base_traefik_upgrade/freshrss
