@@ -102,7 +102,7 @@ spec:
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
-metadat:
+metadata:
   name: redirect
   namespace: freshrss
 spec:
