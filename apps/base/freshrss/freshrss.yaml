@@ -82,11 +82,10 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: freshrss-redirect
+  name: freshrss-ingress
   namespace: freshrss
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: freshrss-freshrss-redirect@kubernetescrd
 spec:
   rules:
   - host: freshrss
