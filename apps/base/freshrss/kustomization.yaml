@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: freshrss
 resources:
 - namespace.yaml
-- deployment.yaml
+- freshrss.yaml
