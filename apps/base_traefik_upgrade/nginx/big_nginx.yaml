@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: big-nginx-deployment
+  namespace: nginx-test
+spec:
+  selector:
+    matchLabels:
+      app: big-nginx
+  replicas: 6 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: big-nginx
+    spec:
+      containers:
+      - name: big-nginx
+        image: nginx
+        ports:
+          - containerPort: 80
+        resources:
+          requests:
+            memory: "3Gi"
+            cpu: "100m"
+          limits:
+            memory: "4Gi"
+            cpu: "500m"
