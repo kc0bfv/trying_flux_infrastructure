@@ -83,7 +83,7 @@ spec:
     port: 8384
     targetPort: webconf
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: syncthing-auth
@@ -92,7 +92,7 @@ spec:
   basicAuth:
     secret: syncthing-basic-auth
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: syncthing-redirect
