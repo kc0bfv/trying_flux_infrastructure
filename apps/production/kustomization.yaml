@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../base/coder
   - ../base/power_sensor_monitor
-  - ../base/ttrss
+  #- ../base/ttrss
   - ../base/funkwhale
   - ../base/syncthing
 patchesStrategicMerge:
@@ -11,8 +11,8 @@ patchesStrategicMerge:
   - coder_http_redir.yaml
   - power-sensor-monitor.yaml
   - power-sensor-monitor_http_redir.yaml
-  - ttrss.yaml
-  - ttrss_http_redir.yaml
+  #- ttrss.yaml
+  #- ttrss_http_redir.yaml
   - funkwhale.yaml
   - funkwhale_http_redir.yaml
   - syncthing.yaml
