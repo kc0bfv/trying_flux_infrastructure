@@ -1,12 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../base_traefik_upgrade/coder
-- ../base_traefik_upgrade/nginx
-- ../base_traefik_upgrade/power_sensor_monitor
-- ../base_traefik_upgrade/syncthing
-- ../base_traefik_upgrade/freshrss
+- ../base/nginx
+- ../base/power_sensor_monitor
+- ../base/syncthing
+- ../base/freshrss
 patchesStrategicMerge:
-- coder.yaml
 - nginx-ingress.yaml
 - power-sensor-monitor.yaml

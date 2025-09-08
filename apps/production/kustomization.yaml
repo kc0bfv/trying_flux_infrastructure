@@ -1,19 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  #- ../base/coder
   - ../base/power_sensor_monitor
-  #- ../base/ttrss
   - ../base/freshrss
   - ../base/funkwhale
   - ../base/syncthing
 patchesStrategicMerge:
-  #- coder.yaml
-  #- coder_http_redir.yaml
   - power-sensor-monitor.yaml
   - power-sensor-monitor_http_redir.yaml
-  #- ttrss.yaml
-  #- ttrss_http_redir.yaml
   - freshrss.yaml
   - funkwhale.yaml
   - funkwhale_http_redir.yaml
