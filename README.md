@@ -173,6 +173,11 @@ kubectl create secret generic syncthing-basic-auth -n syncthing --from-literal=u
 For karakeep:
 
 ```
+ export BASIC_AUTH_USER=MakeSomethingNiceUpHere
+ export BASIC_AUTH_PASS=MakeSomethingNiceUpHere
+
+kubectl create secret generic karakeep-basic-auth -n karakeep --from-literal=username="${BASIC_AUTH_USER}" --from-literal=password="${BASIC_AUTH_PASS}" --type="kubernetes.io/basic-auth" -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > karakeep-basic-auth-sealed.yaml
+
 kubectl create secret generic karakeep-secrets -n karakeep --from-literal=nextauth-secret="$(openssl rand -base64 36)" --from-literal=meili-master-key="$(openssl rand -base64 36)" --from-literal=next-public-secret="$(openssl rand -base64 36) -o yaml --dry-run=client | kubeseal --format=yaml --cert=public_sealed_secret.pem > karakeep-secrets-sealed.yaml
 ```
 
