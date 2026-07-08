@@ -5,6 +5,7 @@ resources:
   - ../base/freshrss
   - ../base/funkwhale
   - ../base/syncthing
+  - ../base/karakeep
 patchesStrategicMerge:
   - power-sensor-monitor.yaml
   - power-sensor-monitor_http_redir.yaml
@@ -12,3 +13,13 @@ patchesStrategicMerge:
   - funkwhale.yaml
   - funkwhale_http_redir.yaml
   - syncthing.yaml
+  - karakeep-ingress.yaml
+
+# For karakeep
+configMapGenerator:
+  - name: karakeep-configuration
+    behavior: merge
+    literals:
+    - NEXTAUTH_URL=https://karakeep.notmet.net/
+    - KARAKEEP_VERSION=release
+    - DISABLE_SIGNUPS=false
