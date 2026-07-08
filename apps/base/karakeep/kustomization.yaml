@@ -16,6 +16,12 @@ resources:
 - data-pvc.yaml
 - ingress.yaml
 
+configMapGenerator:
+  - name: karakeep-configuration
+    literals:
+    - NEXTAUTH_URL=https://localhost/
+    - KARAKEEP_VERSION=release
+
 replacements:
 - source:
     fieldPath: data.KARAKEEP_VERSION
