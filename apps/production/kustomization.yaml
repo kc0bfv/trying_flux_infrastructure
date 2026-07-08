@@ -22,4 +22,4 @@ configMapGenerator:
     literals:
     - NEXTAUTH_URL=https://karakeep.notmet.net/
     - KARAKEEP_VERSION=release
-    - DISABLE_SIGNUPS=false
+    - DISABLE_SIGNUPS=true
