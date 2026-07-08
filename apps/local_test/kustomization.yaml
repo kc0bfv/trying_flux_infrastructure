@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
 - ../base/nginx
 - ../base/karakeep
-- karakeep.yaml
 #- ../base/power_sensor_monitor
 #- ../base/syncthing
 #- ../base/freshrss
@@ -11,3 +10,12 @@ patchesStrategicMerge:
 - nginx-ingress.yaml
 - karakeep-ingress.yaml
 #- power-sensor-monitor.yaml
+
+# For karakeep
+configMapGenerator:
+  - name: karakeep-configuration
+    behavior: merge
+    literals:
+    - NEXTAUTH_URL=https://karakeep-cust/
+    - KARAKEEP_VERSION=release
+    - DISABLE_SIGNUPS=true
