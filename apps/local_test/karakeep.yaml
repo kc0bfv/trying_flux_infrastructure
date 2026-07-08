@@ -7,5 +7,6 @@ configMapGenerator:
   - name: karakeep-configuration
     behavior: merge
     literals:
-    - NEXTAUTH_URL=https://karakeep/
+    - NEXTAUTH_URL=https://karakeep-cust/
     - KARAKEEP_VERSION=release
+    - DISABLE_SIGNUPS=true
