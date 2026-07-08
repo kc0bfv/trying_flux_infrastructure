@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
 - ../base/nginx
 - ../base/karakeep
-- karakeep.yaml
+#- karakeep.yaml
 #- ../base/power_sensor_monitor
 #- ../base/syncthing
 #- ../base/freshrss
 patchesStrategicMerge:
 - nginx-ingress.yaml
-- karakeep-ingress.yaml
+#- karakeep-ingress.yaml
 #- power-sensor-monitor.yaml
