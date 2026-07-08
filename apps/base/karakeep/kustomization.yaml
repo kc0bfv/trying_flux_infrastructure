@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: karakeep
 
 resources:
-#- karakeep.yaml
 - namespace.yaml
 - web-deployment.yaml
 - web-service.yaml
@@ -21,6 +20,7 @@ configMapGenerator:
     literals:
     - NEXTAUTH_URL=https://localhost/
     - KARAKEEP_VERSION=release
+    - DISABLE_SIGNUPS=true
 
 replacements:
 - source:
